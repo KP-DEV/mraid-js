@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>MRAID JS - Events</title><script>if (location.protocol.match(/^http/) && location.pathname.match('\.html') === null && location.pathname.slice(-1) !== '/') {
+  location.href = location.href + '/';
+}</script><link href="../bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"><!--[if lt IE 9]><script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script><script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]--><link href="../google-code-prettify/prettify.css" rel="stylesheet" type="text/css"><link href="../style.css" rel="stylesheet" type="text/css"><link href="../tocify/jquery.tocify.css" rel="stylesheet" type="text/css"></head><body data-spy="scroll" data-target=".sidebar"><nav role="navigation" class="navbar navbar-default navbar-fixed-top"><div class="navbar-header"><button type="button" data-toggle="collapse" data-target="#top-navigation-collapse" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><div id="top-navigation-collapse" class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href="../index.html">Home</a></li><li class="dropdown active"><a data-toggle="dropdown" href="#" class="dropdown-toggle">Guides - Events <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="../guides/Events.html">Events</a></li></ul></li><li><a href="../classes/index.html">Classes</a></li></ul><div class="options"><label class="checkbox"><input id="options-private" type="checkbox"> Private </label></div></div></div></nav><div class="container-fluid content"><div class="row"><div class="hidden-xs col-sm-3"><div id="toc"></div></div><div class="col-sm-9"><div><h1 id="-ready-"><code>&quot;ready&quot;</code></h1>
+<p>The ready event triggers when the container is fully loaded, initialized, and ready for any calls from the ad creative. It is the responsibility of the MRAID-compliant container to prepare the API methods before the ad creative is loaded.
+While the container may load all of MRAID at once, at a minimum the container must be prepared to support the getState and addEventListener capabilities as early as possible in the ad loading process; otherwise there will be no way for the ad to register for the ready event. In the event that the container may still need more time to initialize settings or prepare additional features, ready should only fire when the container is completely prepared for any MRAID request.</p>
+<pre><code>ready -&gt; function()
+</code></pre><p><em>parameters</em></p>
+<ul>
+<li>none</li>
+</ul>
+<p><em>triggered by</em></p>
+<ul>
+<li>none</li>
+</ul>
+<h1 id="-error-"><code>&quot;error&quot;</code></h1>
+<p>This event is triggered whenever a container error occurs. The event contains a description of the error that occurred and, when appropriate, the name of the action that resulted in the error (in the absence of an associated action, the action parameter is null).
+While the “message” part of the error event is not defined by the MRAID specification and mainly intended for pre-flight debugging of creative, the “action” part of the error is always the name of the method that the ad tried to use that led to the error.</p>
+<pre><code>error -&gt; function(message, action)
+</code></pre><p><em>parameters</em></p>
+<ul>
+<li><code>message:string</code> - description of the type of error</li>
+<li><code>action:string</code> - name of action that caused error</li>
+</ul>
+<p><em>triggered by</em></p>
+<ul>
+<li>anything that goes wrong</li>
+</ul>
+<h1 id="-statechange-"><code>&quot;stateChange&quot;</code></h1>
+<p>The stateChange event fires when the state is changed programmatically by the ad or by the environment. This event is triggered when the Ad View changes between default, expanded, resized, and hidden states as the result of an expand(), resize(), or a close().</p>
+<pre><code>stateChange -&gt; function(state)
+</code></pre><p><em>parameters</em></p>
+<ul>
+<li><code>state:number</code> - &quot;loading|default|expanded|resized|hidden&quot;</li>
+</ul>
+<p><em>triggered by</em></p>
+<ul>
+<li>expand, close, resize or the app</li>
+</ul>
+<h1 id="-viewablechange-"><code>&quot;viewableChange&quot;</code></h1>
+<p>The viewableChange event fires when the ad moves from on-screen to off-screen and vice versa.</p>
+<pre><code>stateChange -&gt; function(viewable)
+</code></pre><p><em>parameters</em></p>
+<ul>
+<li><code>viewable:boolean</code> - true: container is on-screen and viewable by the user; false: container is offscreen and not 
+viewable</li>
+</ul>
+<p><em>triggered by</em></p>
+<ul>
+<li>a change in the application view controller</li>
+</ul>
+<h1 id="-sizechange-"><code>&quot;sizeChange&quot;</code></h1>
+<p>The <code>sizeChange</code> event fires when the ad’s size within the app UI changes. This can be the result of an orientation change of the device or calls to the resize or expand methods. Measurements are in density-independent pixels.
+This event is triggered when the display state of the ad’s web view changes.</p>
+<pre><code>sizeChange -&gt; function(width, height)
+</code></pre><p><em>parameters</em></p>
+<ul>
+<li><code>width:number</code> - the width of the view</li>
+<li><code>height:number</code> - the height of the view</li>
+</ul>
+<p><em>triggered by</em></p>
+<ul>
+<li>a change in the view size as the result of a resize, expand, close, orientation, or the app after registering a 
+<code>sizeChange</code> event listener</li>
+</ul>
+</div></div></div></div><script src="http://code.jquery.com/jquery-1.11.0.min.js"></script><script src="../bootstrap-3.2.0-dist/js/bootstrap.min.js"></script><script src="../google-code-prettify/prettify.js"></script><script src="../script.js"></script><script src="../group-examples.js"></script><script src="http://code.jquery.com/ui/1.9.0/jquery-ui.min.js"></script><script src="../tocify/jquery.tocify.js"></script><script>$(function() {
+  $('#toc').tocify({extendPage:false, scrollTo:60});
+});</script></body></html>

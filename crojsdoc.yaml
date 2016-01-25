@@ -1,0 +1,12 @@
+title: MRAID JS
+output: doc
+sources:
+  - src
+  - guides
+reverse_see_also: true
+plugins:
+  - crojsdoc-plugin-underscore-private
+external-types:
+  Element: https://developer.mozilla.org/en-US/docs/Web/API/Element
+  Event: https://developer.mozilla.org/en-US/docs/Web/API/Event
+  EventEmitter: https://nodejs.org/api/events.html#events_class_events_eventemitter

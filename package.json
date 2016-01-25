@@ -1,0 +1,34 @@
+{
+  "name": "mraid-js",
+  "version": "0.4.0",
+  "description": "MRAID JavaScript Implementation",
+  "browser": "lib/mraid-sdk.min.js",
+  "scripts": {
+    "doc": "crojsdoc",
+    "build": "npm run build-sdk && npm run build-controller",
+    "build-sdk": "browserify -d -s MRAIDSDK src/sdk/index.coffee | exorcist sandbox/scripts/debug/mraid-sdk.js.map > sandbox/scripts/debug/mraid-sdk.js",
+    "postbuild-sdk": "uglifyjs -c dead_code,drop_debugger,conditionals,loops,join_vars,warnings,drop_console -m --screw-ie8 -- sandbox/scripts/debug/mraid-sdk.js > lib/mraid-sdk.min.js",
+    "build-controller": "browserify -d -s mraid src/controller/index.coffee | exorcist sandbox/scripts/debug/mraid.js.map > sandbox/scripts/debug/mraid.js",
+    "postbuild-controller": "uglifyjs -c dead_code,drop_debugger,conditionals,loops,join_vars,warnings,drop_console -m --screw-ie8 -- sandbox/scripts/debug/mraid.js > lib/mraid.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://yesley@bitbucket.org/yesley/mraid-js.git"
+  },
+  "author": "Yaroslav Kovalev <richard.yesley@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/yesley/mraid-js#readme",
+  "devDependencies": {
+    "browserify": "^12.0.1",
+    "coffeeify": "^1.1.0",
+    "crojsdoc": "^0.8.15",
+    "crojsdoc-plugin-underscore-private": "^0.1.0",
+    "exorcist": "^0.4.0"
+  },
+  "private": true,
+  "browserify": {
+    "transform": [
+      "coffeeify"
+    ]
+  }
+}

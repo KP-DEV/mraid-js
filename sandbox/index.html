@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>MRAID Sandbox</title>
+    <meta name="description" content="MRAID Sandbox">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        button {
+            border: 1px solid #aaa;
+
+            margin: 0 5px;
+            padding: 5px 10px;
+            height: 30px;
+
+            background-color: #eee;
+        }
+
+        button.focused {
+            background-color: #D08484;
+        }
+    </style>
+    <script src="$MANAGER_WIDGET/Common/API/Widget.js"></script>
+    <script src="$MANAGER_WIDGET/Common/API/TVKeyValue.js"></script>
+</head>
+<body>
+<div style="border-bottom: 1px dotted gray; margin-bottom: 10px; padding-bottom: 10px;">
+    <label for="ad-url"><input id="ad-url" type="text" placeholder="Ad URL" style="width: 700px; height: 24px;"></label>
+    <button id="create-ad1" class="nav-itm">Play Ad</button>
+</div>
+
+<script>
+    window.pframe = {
+        platform: 'tzf',
+        subplatform: ''
+    };
+</script>
+<script src="scripts/vendor/radio.min.js"></script>
+<script src="scripts/pframe/device-detect.js"></script>
+<script src="scripts/pframe/keyboard.js"></script>
+<script src="scripts/pframe/dom.js"></script>
+<script src="scripts/pframe/navigation.js"></script>
+
+<script src="scripts/debug/mraid-sdk.js"></script>
+<script>
+    document.getElementById('create-ad1')
+            .addEventListener('click', function () {
+                var url = document.getElementById('ad-url').value;
+
+                if (!url) { return; }
+
+                MRAIDSDK.createContainer('tvz', url);
+            });
+</script>
+</body>
+</html>
